@@ -12,4 +12,3 @@ if __name__ == '__main__':
 
         graph = parse(filename, isDirected)
 
-        print graph.neighbors('MN')

@@ -25,7 +25,7 @@ def parse(filename, isDirected):
 
     print "Reading and parsing the data into memory..."
     if isDirected:
-        return parse_directed()
+        return parse_directed(data)
     else:
         return parse_undirected(data)
 
@@ -39,14 +39,22 @@ def parse_undirected(data):
 
     return G
 
-def parse_directed():
+def parse_directed(data):
     DG = nx.DiGraph()
-    nodes = set()
-    for i, row in enumerate(reader):
-        n1     = row[0]
-        n1_val = row[1]
-        n2     = row[2]
-        n2_val = row[3]
+
+    for i, row in enumerate(data):
+        node_a = row[0].strip()
+        node_b = row[2].strip()
+        val_a = int(row[1])
+        val_b = int(row[3])
+
+        DG.add_edge(node_a, node_b)
+        if val_a >= val_b:
+            DG.add_path([node_a, node_b])
+        else:
+            DG.add_path([node_b, node_a])
+
+    return DG
 
 def print_results(f, method, results):
     print method
