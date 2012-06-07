@@ -1,3 +1,4 @@
+import operator
 import math, random, sys, csv 
 from utils import parse, print_results
 
@@ -40,8 +41,12 @@ if __name__ == '__main__':
         p = PageRank(graph)
         p.rank()
 
-        for state, rank in p.ranks.iteritems():
-            print state+": "+str(rank)
+        sorted_r = sorted(p.ranks.iteritems(), key=operator.itemgetter(1))
+        for tup in sorted_r:
+            print str(tup[0]) + ":" + str(tup[1])
+
+        #for state, rank in p.ranks.iteritems():
+        #    print state+": "+str(rank)
 
  #       for node in graph.nodes():
  #          print node + rank(graph, node)
