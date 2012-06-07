@@ -10,6 +10,8 @@ Page Rank
 Run Instructions:
 ================
 
+NOTE: NetworkX is required for installation. Run sudo easy_install networkx
+
 For directed data, run: python pageRank.py <datasource> directed
 For undirected data, run: python pageRank.py <datasource> undirected
 
