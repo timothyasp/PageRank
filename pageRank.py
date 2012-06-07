@@ -23,8 +23,7 @@ class PageRank:
                     outlinks = len(self.graph.neighbors(n))
                     rank_sum += (1 / float(outlinks)) * self.ranks[n]
             
-            node['rank'] = ((1 - self.d) * (1/self.V)) + self.d*rank_sum
-            print node['rank']
+            self.ranks[key] = ((1 - self.d) * (1/self.V)) + self.d*rank_sum
 
         return p
 
@@ -40,6 +39,9 @@ if __name__ == '__main__':
         graph = parse(filename, isDirected)
         p = PageRank(graph)
         p.rank()
+
+        for state, rank in p.ranks.iteritems():
+            print state+": "+str(rank)
 
  #       for node in graph.nodes():
  #          print node + rank(graph, node)
