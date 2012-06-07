@@ -1,3 +1,4 @@
+import operator
 import math, random, sys, csv 
 from utils import parse, print_results
 
@@ -49,8 +50,11 @@ if __name__ == '__main__':
         graph = parse(filename, isDirected)
         p = PageRank(graph, isDirected)
         p.rank()
-        for state, rank in p.ranks.iteritems():
-            print state+": "+str(rank)
+
+        sorted_r = sorted(p.ranks.iteritems(), key=operator.itemgetter(1), reverse=True)
+
+        for tup in sorted_r:
+            print '{0:30} :{1:10f}'.format(str(tup[0]), tup[1])
 
  #       for node in graph.nodes():
  #          print node + rank(graph, node)
