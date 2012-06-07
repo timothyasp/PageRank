@@ -18,7 +18,7 @@ def parse_undirected(data):
 
     num_nodes = len(nodes)
     rank = 1/float(num_nodes)
-    G.add_nodes_from(nodes, rank=str(rank))
+    G.add_nodes_from(nodes, rank=rank)
     G.add_edges_from(edges)
 
     return G

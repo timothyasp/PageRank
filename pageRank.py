@@ -6,18 +6,26 @@ class PageRank:
         self.graph = graph
         self.V = len(self.graph)
         self.d = 0.85
+        self.ranks = dict()
     
     def rank(self):
+        for key, node in self.graph.nodes(data=True):
+            self.ranks[key] = node.get('rank')
+
         for key, node in self.graph.nodes(data=True):
             curr_rank = node.get('rank')
             # Rank is there, but I dont know how to access the rank from the
             # neighbors.. cant get at the rank field in the object
-            print curr_rank
             neighbors = self.graph[key]
             rank_sum = 0
-            for n, val in neighbors.iteritems():
-                outlinks = len(self.graph.neighbors(n))
-                rank_sum += (1 / outlinks)
+            for n in neighbors:
+                if self.ranks[n] is not None:
+                    outlinks = len(self.graph.neighbors(n))
+                    rank_sum += (1 / float(outlinks)) * self.ranks[n]
+            
+            node['rank'] = ((1 - self.d) * (1/self.V)) + self.d*rank_sum
+            print node['rank']
+
         return p
 
 if __name__ == '__main__':
@@ -33,8 +41,8 @@ if __name__ == '__main__':
         p = PageRank(graph)
         p.rank()
 
-        for node in graph.nodes():
-            print node + rank(graph, node)
+ #       for node in graph.nodes():
+ #          print node + rank(graph, node)
 
             #neighbs = graph.neighbors(node)
             #print node + " " + str(neighbs)
