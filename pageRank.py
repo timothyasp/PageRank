@@ -17,24 +17,25 @@ class PageRank:
             else:
                 self.ranks[key] = node.get('rank')
 
-        for key, node in self.graph.nodes(data=True):
-            rank_sum = 0
-            curr_rank = node.get('rank')
-            if self.directed:
-                neighbors = self.graph.out_edges(key)
-                for n in neighbors:
-                    outlinks = len(self.graph.out_edges(n[1]))
-                    if outlinks > 0:
-                        rank_sum += (1 / float(outlinks)) * self.ranks[n[1]]
-            else: 
-                neighbors = self.graph[key]
-                for n in neighbors:
-                    if self.ranks[n] is not None:
-                        outlinks = len(self.graph.neighbors(n))
-                        rank_sum += (1 / float(outlinks)) * self.ranks[n]
+        for _ in range(10):
+            for key, node in self.graph.nodes(data=True):
+                rank_sum = 0
+                curr_rank = node.get('rank')
+                if self.directed:
+                    neighbors = self.graph.out_edges(key)
+                    for n in neighbors:
+                        outlinks = len(self.graph.out_edges(n[1]))
+                        if outlinks > 0:
+                            rank_sum += (1 / float(outlinks)) * self.ranks[n[1]]
+                else: 
+                    neighbors = self.graph[key]
+                    for n in neighbors:
+                        if self.ranks[n] is not None:
+                            outlinks = len(self.graph.neighbors(n))
+                            rank_sum += (1 / float(outlinks)) * self.ranks[n]
             
-            # actual page rank compution
-            self.ranks[key] = ((1 - float(self.d)) * (1/float(self.V))) + self.d*rank_sum
+                # actual page rank compution
+                self.ranks[key] = ((1 - float(self.d)) * (1/float(self.V))) + self.d*rank_sum
 
         return p
 
@@ -54,7 +55,7 @@ if __name__ == '__main__':
         sorted_r = sorted(p.ranks.iteritems(), key=operator.itemgetter(1), reverse=True)
 
         for tup in sorted_r:
-            print '{0:30} :{1:10f}'.format(str(tup[0]), tup[1])
+            print '{0:30} :{1:10}'.format(str(tup[0]), tup[1])
 
  #       for node in graph.nodes():
  #          print node + rank(graph, node)
