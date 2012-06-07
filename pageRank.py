@@ -23,7 +23,7 @@ class PageRank:
                     outlinks = len(self.graph.neighbors(n))
                     rank_sum += (1 / float(outlinks)) * self.ranks[n]
             
-            self.ranks[key] = ((1 - self.d) * (1/self.V)) + self.d*rank_sum
+            self.ranks[key] = ((1 - float(self.d)) * (1/float(self.V))) + self.d*rank_sum
 
         return p
 
