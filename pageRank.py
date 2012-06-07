@@ -1,4 +1,4 @@
-import math, random, sys, csv, networkx as nx
+import math, random, sys, csv 
 from utils import parse, print_results
 
 class PageRank:
@@ -33,3 +33,32 @@ if __name__ == '__main__':
         p = PageRank(graph)
         p.rank()
 
+        for node in graph.nodes():
+            print node + rank(graph, node)
+
+            #neighbs = graph.neighbors(node)
+            #print node + " " + str(neighbs)
+            #print random.uniform(0,1)
+
+def rank(graph, node):
+    #V
+    nodes = graph.nodes()
+    #|V|
+    nodes_sz = len(nodes) 
+    #I
+    neighbs = graph.neighbors(node)
+    #d
+    rand_jmp = random.uniform(0, 1)
+
+    ranks = []
+    ranks.append( (1/nodes_sz) )
+    
+    for n in nodes:
+        rank = (1-rand_jmp) * (1/nodes_sz) 
+        trank = 0
+        for nei in neighbs:
+            trank += (1/len(neighbs)) * ranks[len(ranks)-1]
+        rank = rank + (d * trank)
+        ranks.append(rank)
+
+ 
