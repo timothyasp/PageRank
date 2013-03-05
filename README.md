@@ -2,10 +2,15 @@ PageRank
 ========
 
 Implementation of the PageRank algorithm for CPE466 data mining lab
-Timothy Asp
-Caleb Carlton
-CPE 466 - Lab 7
-Page Rank
+
+   Timothy Asp (@timothyasp)
+
+   Caleb Carlton (@ccarlton)
+
+   CPE 466 - Lab 7
+
+   Page Rank
+
 
 Run Instructions:
 ================
@@ -15,13 +20,19 @@ NOTE: NetworkX is required for installation. Run sudo easy_install networkx
 For directed data, run: python pageRank.py <datasource> directed
 For undirected data, run: python pageRank.py <datasource> undirected
 
+
 Implementation
 =============
+
 Generates a directed or undirected graph of the data, then runs the PageRank algorithm, iterating over every node checking the neighbors (undirected) and out-edges (directed).  We used NetworkX (http://networkx.lanl.gov/) for out graphs which is a great python library for creating and maintaining these graphs.  For D, which is the probability that the user will randomly go to a different page, we chose .85 which is what the book had as the probability for D.  The graph is iterated over 10 times, to calculate the rank best.
+
 
 State Borders
 ================
+
 Analysis: The top ranked states are all high density area states, meaning they have lots of state borders, which makes sense and matches expected output.
+
+```
    MO                             :0.0315971844476
    KY                             :0.0311331684216
    TN                             :0.0310935756102
@@ -73,9 +84,12 @@ Analysis: The top ranked states are all high density area states, meaning they h
    DC                             :0.0102730766081
    MV                             :0.0100317563706
    ME                             :0.00871019610841
+```
 
 Political Blogs
 ==============
+
+```
    855                            :0.0123982365159
    155                            :0.0102073178341
    963                            :0.0085996555082
@@ -139,10 +153,14 @@ Political Blogs
    935                            :0.00263408868513
    892                            :0.00261845274543
    … trimmed
+```
 
 NCAA
 =====
+
 Analysis: A quick look through the 2009 season results show that most of the teams ranked the highest we’re the division leaders and winning teams. 
+
+```
    Boise State                    :0.00733262361219
    Utah                           :0.00722435930833
    Montana                        :0.00709947017054
@@ -240,10 +258,14 @@ Analysis: A quick look through the 2009 season results show that most of the tea
    Morgan State                   :0.00329645553639
    Harvard                        :0.00324203805793
    Grambling State                :0.00319995545647
+```
 
- Les Miserables
- =============
- Analysis: The main characters are ranked the highest, which is as expected
+Les Miserables
+=============
+
+Analysis: The main characters are ranked the highest, which is as expected
+
+```
     Valjean                        :0.0758308901974
     Myriel                         :0.0429505779458
     Gavroche                       :0.0359160666477
@@ -321,10 +343,14 @@ Analysis: A quick look through the 2009 season results show that most of the tea
     MmeDeR                         :0.00373850352216
     Boulatruelle                   :0.00343826653682
     MotherPlutarch                 :0.00330387114808
+```
 
  Karate
  ======
- Analysis: Looking through the data, the top people the most connections, thus making them the highest ranked, so it’s as expected
+
+Analysis: Looking through the data, the top people the most connections, thus making them the highest ranked, so it’s as expected
+
+```
     34                             :0.100779659381
     1                              :0.097005456951
     33                             :0.071576888392
@@ -359,10 +385,13 @@ Analysis: A quick look through the 2009 season results show that most of the tea
     16                             :0.0145118570135
     10                             :0.014293551594
     12                             :0.0095651796064
+```
 
 
- Dolphins
- =======
+Dolphins
+=======
+
+```
     Grin                           :0.032098769619
     Jet                            :0.0318806892333
     Trigger                        :0.0312662964391
@@ -425,7 +454,9 @@ Analysis: A quick look through the 2009 season results show that most of the tea
     Whitetip                       :0.0049602682216
     SMN5                           :0.00491419391454
     Fork                           :0.00483181375568
+```
 
  Conclusion
 ================
+
 PageRank worked well for most of the datasets, but it worked best for datasets with Directed graphs. The results seemed less relevant for undirected graphs because each edge specifies a two way relation between two nodes. Directed graphs are more specific in that a link to a page does not necessarily imply that page links back. For this reason we conclude that pageRank is much more useful on directed graphs.  Also, at first we only iterated over the graph once, but realizing that we need to recalibrate the links after every run, we ran it over the graph multiple times, which yielded much better results.  
