@@ -345,8 +345,8 @@ Analysis: The main characters are ranked the highest, which is as expected
     MotherPlutarch                 :0.00330387114808
 ```
 
- Karate
- ======
+Karate
+======
 
 Analysis: Looking through the data, the top people the most connections, thus making them the highest ranked, so it’s as expected
 
@@ -389,7 +389,7 @@ Analysis: Looking through the data, the top people the most connections, thus ma
 
 
 Dolphins
-=======
+========
 
 ```
     Grin                           :0.032098769619
