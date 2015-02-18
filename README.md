@@ -1,15 +1,11 @@
 PageRank
 ========
 
-Implementation of the PageRank algorithm for CPE466 data mining lab
-
    Timothy Asp (@timothyasp)
 
    Caleb Carlton (@ccarlton)
 
-   CPE 466 - Lab 7
 
-   Page Rank
 
 
 Run Instructions:
