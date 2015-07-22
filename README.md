@@ -1,3 +1,9 @@
+WARNING
+======
+
+This is NOT a complete, nor even a very good, PageRank implementation.  This was a learning implementation and, as such, should be treated as a simple learning project.  Use at your own risk.
+
+
 PageRank
 ========
 
